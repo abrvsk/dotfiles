@@ -7,7 +7,7 @@ nnoremap <silent> \ :vsplit<cr>
 nnoremap <silent> - :split<cr>
 
 " remap leader related commands
-nnoremap <silent> <leader>w :w<cr>
+nnoremap <silent> <leader>w :w<cr> :e<cr>
 nnoremap <silent> <leader>c :q<cr>
 
 " turn off search highlighting

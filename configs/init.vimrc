@@ -71,6 +71,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'airblade/vim-gitgutter'
+Plug 'rbong/vim-flog'
 
 " jest coverage
 Plug 'ruanyl/coverage.vim'

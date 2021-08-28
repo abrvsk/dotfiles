@@ -4,14 +4,16 @@ set completeopt=menuone,noselect
 highlight link CompeDocumentation NormalFloat
 
 let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.documentation = v:true
+" let g:compe.enabled = v:true
+" let g:compe.autocomplete = v:true
+" let g:compe.debug = v:false
+" let g:compe.min_length = 1
+" let g:compe.preselect = 'enable'
+" let g:compe.documentation = v:true
 
 let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
 let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.emoji = v:true
@@ -49,6 +51,9 @@ nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 " nnoremap <leader> rn    <cmd>lua vim.lsp.buf.rename()<CR>
 " nnoremap <silent> g[    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " nnoremap <silent> g]    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+" nnoremap <leader>or      <cmd>lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})<CR>
+command! -nargs=0 OR   :lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})<CR>
+nnoremap <silent> <leader>or :OR<cr>
 
 " lsp provider to find the cursor word definition and reference
 " open = 'o', vsplit = 's', split = 'i', quit = 'q', scroll_down = '<C-f>', scroll_up = '<C-b>'
@@ -133,7 +138,8 @@ let g:gruvbox_undercurl = 1
 " fugitive git remaps
 nnoremap <silent> <leader>g :G<cr> :Twiggy<cr>
 " nnoremap <silent> <leader>tg :Twiggy<cr>
-nnoremap <silent> <leader>b :Gblame<cr>
+nnoremap <silent> <leader>b :Git blame<cr>
+nnoremap <silent> <leader>u :Git remote update origin --prune<cr>
 
 
 
@@ -246,3 +252,15 @@ EOF
 
 " TELESCOPE
 nnoremap <silent><leader>t :Telescope<cr>
+
+
+
+" COVERAGE
+let g:coverage_json_report_path = 'coverage/coverage-final.json'
+let g:coverage_sign_covered = '⦿'
+let g:coverage_sign_uncovered = '∆'
+let g:coverage_interval = 5000
+let g:coverage_show_covered = 0
+let g:coverage_show_uncovered = 1
+
+
