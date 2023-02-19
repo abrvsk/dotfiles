@@ -8,27 +8,32 @@ call plug#begin('~/.vim/plugged')
 
 " completion engine
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'tree-sitter/tree-sitter-typescript'
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/nvim-cmp'
 
 " ts utils
-Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-Plug 'glepnir/lspsaga.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
+" Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+" Plug 'glepnir/lspsaga.nvim'
+" Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " file fizzy search
-Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 
 " error highlights
 " pretty icons
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'folke/trouble.nvim'
+" Plug 'folke/trouble.nvim'
 Plug 'folke/lsp-colors.nvim'
 
 Plug 'jiangmiao/auto-pairs'
+
 " definitions/references
 Plug 'pechorin/any-jump.vim'
 Plug 'prettier/vim-prettier', {
@@ -37,7 +42,7 @@ Plug 'prettier/vim-prettier', {
   \ }
 
 " visualize indent
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 
 " Add some colours
 Plug 'joshdick/onedark.vim'
@@ -46,19 +51,22 @@ Plug 'morhetz/gruvbox'
 
 " Comment/uncomment with 'gc[motion]'
 Plug 'tpope/vim-commentary'
+
 " async term commands from vim
 Plug 'tpope/vim-dispatch'
 
 " Improved syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'tree-sitter/tree-sitter-typescript'
 " Plug 'sheerun/vim-polyglot'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " statusline
 Plug 'vim-airline/vim-airline'
 
 " fast movement in buffers
-Plug 'bounceme/poppy.vim'
-au! cursormoved * call PoppyInit()
+" Plug 'bounceme/poppy.vim'
+" au! cursormoved * call PoppyInit()
 
 Plug 'justinmk/vim-sneak'
 
@@ -75,5 +83,8 @@ Plug 'rbong/vim-flog'
 
 " jest coverage
 Plug 'ruanyl/coverage.vim'
+
+" Markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()

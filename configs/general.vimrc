@@ -6,6 +6,7 @@ set cursorline
 set hidden
 set switchbuf=usetab,newtab
 set splitright
+set splitbelow
 set path+=** 		" native vim fuzzy file finder
 set wildmenu 		" visual autocomplete for command menu
 set incsearch           " search as characters are entered
