@@ -36,6 +36,9 @@ set clipboard=unnamed
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
 
+" controls timeout of popups for WhickKey and stuff
+" set timeoutlen=300
+
 " set ZSH as default shell
 set shell=/bin/zsh
 
