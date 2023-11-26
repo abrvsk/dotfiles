@@ -3,10 +3,6 @@ vim.wo.cursorline = true
 -- darken the line numbers background
 vim.cmd('hi LineNr guibg=Grey10')
 
--- sneak motion
-vim.g["sneak#label"] = 1
--- vim.cmd[[highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan]]
-
 -- netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0
@@ -33,7 +29,7 @@ vim.opt.autoread = true
 -- au CursorHold * checktime
 
 -- Make all swap files be saved in a temp directory instead of working one
-vim.opt.directory = '$HOME/.vim/tmp/'
+vim.opt.swapfile = false
 
 -- Better display for messages
 vim.opt.cmdheight = 1

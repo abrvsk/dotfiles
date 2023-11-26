@@ -8,9 +8,12 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.3',
-        -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        -- 'nvim-telescope/telescope.nvim', tag = '0.1.3',
+        'nvim-telescope/telescope.nvim', branch = '0.1.x',
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { 'v-hp/git-worktree.nvim' }
+        }
     }
 
     -- colorscheme
@@ -27,7 +30,6 @@ return require('packer').startup(function(use)
 
     -- pretty icons
     use('kyazdani42/nvim-web-devicons')
-    use('folke/trouble.nvim')
     use('folke/lsp-colors.nvim')
 
     -- Highlight hidden characters: tabs, backspaces etc.
@@ -36,6 +38,7 @@ return require('packer').startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         run = function()
+            require('nvim-treesitter.install').compilers = { "clang" }
             local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
             ts_update()
         end
@@ -54,17 +57,25 @@ return require('packer').startup(function(use)
     use('sodapopcan/vim-twiggy')
     use('airblade/vim-gitgutter')
 
-    -- Twiggy alternative
-    use('idanarye/vim-merginal')
-    -- needed to improve Merginal rendering
-    use('Shougo/vimproc.vim', { run = 'make' })
+    -- alternative to fugitive and twggy
+    -- use {
+    --     'NeogitOrg/neogit',
+    --     requires = {
+    --         { 'nvim-lua/plenary.nvim' },
+    --         { 'nvim-telescope/telescope.nvim' },
+    --     }
+    -- }
 
     -- async term commands from vim
     use('tpope/vim-dispatch')
 
     -- statusline
-    use('vim-airline/vim-airline')
-    use('vim-airline/vim-airline-themes')
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    -- use('vim-airline/vim-airline')
+    -- use('vim-airline/vim-airline-themes')
 
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -73,6 +84,7 @@ return require('packer').startup(function(use)
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
+            { 'MunifTanjim/prettier.nvim' },
 
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },
@@ -88,10 +100,30 @@ return require('packer').startup(function(use)
         }
     }
 
-    use('justinmk/vim-sneak')
+    -- use('justinmk/vim-sneak')
+    -- sneak alternative
+    use {
+        'smoka7/hop.nvim',
+        tag = '*', -- optional but strongly recommended
+        config = function()
+            -- you can configure Hop the way you like here; see :h hop-config
+            require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+        end
+    }
 
     -- popup of possible key bindings
-    use('folke/which-key.nvim')
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
 
     -- Symbols
     use('simrat39/symbols-outline.nvim')
@@ -102,10 +134,6 @@ return require('packer').startup(function(use)
     -- dotnet stuff
     use('OmniSharp/omnisharp-vim')
     use('Hoffs/omnisharp-extended-lsp.nvim')
-    use('Decodetalkers/csharpls-extended-lsp.nvim')
-
-    -- for shits and giggles
-    use('eandrju/cellular-automaton.nvim')
 
     use('tpope/vim-commentary')
 
@@ -115,6 +143,9 @@ return require('packer').startup(function(use)
     -- rust stuff
     use("rust-lang/rust.vim")
     use("saecki/crates.nvim")
+
+    -- super fast Rust based finder
+    -- use('liuchengxu/vim-clap', { run = ':Clap install-binary!' })
 
     -- debugger
     use('mfussenegger/nvim-dap')
