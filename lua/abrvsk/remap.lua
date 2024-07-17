@@ -9,6 +9,7 @@ map('n', '-', ':split<cr>', { silent = true })
 -- remap leader related commands
 map('n', '<leader>w', ":w<cr>", { silent = true })
 map('n', '<leader>c', ":q<cr>", { silent = true })
+map('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<cr>')
 
 -- turn off search highlighting
 map('n', '<leader>nh', ':nohl<cr>', { silent = true })
@@ -18,6 +19,12 @@ map('n', '<C-h>', '<C-w><C-h>', { silent = true })
 map('n', '<C-j>', '<C-w><C-j>', { silent = true })
 map('n', '<C-k>', '<C-w><C-k>', { silent = true })
 map('n', '<C-l>', '<C-w><C-l>', { silent = true })
+
+-- resize splits
+map('n', '˙', '<C-w>5<', { silent = true })
+map('n', '¬', '<C-w>5>', { silent = true })
+map('n', '˚', '<C-w>2+', { silent = true })
+map('n', '∆', '<C-w>2-', { silent = true })
 
 -- jump between buffers
 map('n', '<silent> <leader>]', ':bnext')
