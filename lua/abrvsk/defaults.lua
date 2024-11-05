@@ -19,7 +19,7 @@ vim.opt.hlsearch = true  -- highlight matches
 vim.opt.incsearch = true -- search as characters are entered
 vim.opt.autochdir = false
 vim.opt.linespace = 2
-vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- always show sign column
 vim.opt.signcolumn = 'yes'
