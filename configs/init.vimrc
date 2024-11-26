@@ -37,22 +37,23 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCM
 Plug 'hrsh7th/nvim-compe'
 
 " ts utils
-Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-Plug 'glepnir/lspsaga.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
+" Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+" Plug 'glepnir/lspsaga.nvim'
+" Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " file fizzy search
-Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 
 " error highlights
 " pretty icons
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'folke/trouble.nvim'
+" Plug 'folke/trouble.nvim'
 Plug 'folke/lsp-colors.nvim'
 
 Plug 'jiangmiao/auto-pairs'
+
 " definitions/references
 Plug 'pechorin/any-jump.vim'
 Plug 'prettier/vim-prettier', {
@@ -61,7 +62,7 @@ Plug 'prettier/vim-prettier', {
   \ }
 
 " visualize indent
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 
 " Add some colours
 Plug 'joshdick/onedark.vim'
@@ -79,12 +80,14 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'tree-sitter/tree-sitter-typescript'
 " Plug 'sheerun/vim-polyglot'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " statusline
 Plug 'vim-airline/vim-airline'
 
 " fast movement in buffers
+" Plug 'bounceme/poppy.vim'
+" au! cursormoved * call PoppyInit()
 
 Plug 'justinmk/vim-sneak'
 

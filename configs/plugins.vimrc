@@ -1,44 +1,64 @@
-" NVIM-COMPE
-" completion
+" NVIM-CMP
+" completion engine
 set completeopt=menuone,noselect
-highlight link CompeDocumentation NormalFloat
-
-let g:compe = {}
-" let g:compe.enabled = v:true
-" let g:compe.autocomplete = v:true
-" let g:compe.debug = v:false
-" let g:compe.min_length = 1
-" let g:compe.preselect = 'enable'
-" let g:compe.documentation = v:true
-
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.emoji = v:true
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 lua << EOF
-require'compe'
---This line is important for auto-import
-vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
+-- Set up nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      end,
+    },
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
 EOF
 
 
 
 " LSPSAGA
-lua << EOF
-local saga = require 'lspsaga'
-saga.init_lsp_saga {
-  max_preview_lines = 40
-  }
-EOF
+" lua << EOF
+" local saga = require 'lspsaga'
+" saga.init_lsp_saga {
+"   max_preview_lines = 40
+"   }
+" EOF
 
 " default LSP
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
@@ -57,31 +77,31 @@ nnoremap <silent> <leader>or :OR<cr>
 
 " lsp provider to find the cursor word definition and reference
 " open = 'o', vsplit = 's', split = 'i', quit = 'q', scroll_down = '<C-f>', scroll_up = '<C-b>'
-nnoremap <silent>gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+" nnoremap <silent>gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 
 " code action
-nnoremap <silent><leader>a <cmd>lua require('lspsaga.codeaction').code_action()<CR>
-vnoremap <silent><leader>a :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
+" nnoremap <silent><leader>a <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+" vnoremap <silent><leader>a :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
 
 " show hover doc
-nnoremap <silent>K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+" nnoremap <silent>K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 
 " rename
 " close rename win use <C-c> in insert mode or `q` in noremal mode or `:q`
-nnoremap <silent><leader>nn <cmd>lua require('lspsaga.rename').rename()<CR>
+" nnoremap <silent><leader>nn <cmd>lua require('lspsaga.rename').rename()<CR>
 
 " preview definition
 " nnoremap <silent> gd :Lspsaga preview_definition<CR> // NOT WORKING
 
 " lsp provider to find the cursor word definition and reference
-nnoremap <silent> gr <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+" nnoremap <silent> gr <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 
 " DIAGNOSTICS
 " jump diagnostic
-nnoremap <silent> g] <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
-nnoremap <silent> g[ <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
+" nnoremap <silent> g] <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+" nnoremap <silent> g[ <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
 " show diagnostic
-nnoremap <silent><leader>d <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
+" nnoremap <silent><leader>d <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
 
 
 
@@ -153,9 +173,9 @@ autocmd Filetype typescript,typescriptreact setlocal omnifunc=v:lua.vim.lsp.omni
 
 
 " TROUBLE
-lua << EOF
-require("trouble").setup {}
-EOF
+" lua << EOF
+" require("trouble").setup {}
+" EOF
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
 
 
@@ -165,21 +185,24 @@ lua << EOF
 local nvim_lsp = require("lspconfig")
 
 -- enable null-ls integration (optional)
-require("null-ls").config {}
-require("lspconfig")["null-ls"].setup {
-  on_attach = on_attach
-}
+-- require("null-ls").config {}
+-- require("lspconfig")["null-ls"].setup {
+  -- on_attach = on_attach
+-- }
 -- TreeSitter modules
 -- syntax highlighting
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    custom_captures = {
+    -- custom_captures = {
       -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      ["foo.bar"] = "Identifier",
-    },
+      -- ["foo.bar"] = "Identifier",
+    -- },
   },
 }
+
+-- Telescope config
+require("telescope").setup()
 
 nvim_lsp.tsserver.setup {
     on_attach = function(client, bufnr)
