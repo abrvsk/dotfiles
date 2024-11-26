@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/Users/abrvsk/work/nuclent/core-backend/src/auth'
+let g:netrw_dirhist_1='/Users/abrvsk/work/nuclent/core-backend/test/__mocks__'
+let g:netrw_dirhist_0='/Users/abrvsk/work/nuclent/core-backend/src/users'
+let g:netrw_dirhist_9='/Users/abrvsk/work/nuclent/core-backend/src/rest-api'
+let g:netrw_dirhist_8='/Users/abrvsk/work/nuclent/core-backend/src/auth'
+let g:netrw_dirhist_7='/Users/abrvsk/work/nuclent/core-backend/src/rest-api/flow'
+let g:netrw_dirhist_6='/Users/abrvsk/work/nuclent/core-backend/src/flow'
+let g:netrw_dirhist_5='/Users/abrvsk/work/nuclent/core-backend/src/rest-api/flow'
+let g:netrw_dirhist_4='/Users/abrvsk/work/nuclent/core-backend/src/rest-api'
+let g:netrw_dirhist_3='/Users/abrvsk/work/nuclent/core-backend/src/rest-api/flow'
