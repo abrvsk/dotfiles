@@ -3,6 +3,10 @@ vim.wo.cursorline = true
 -- darken the line numbers background
 vim.cmd('hi LineNr guibg=Grey10')
 
+-- sneak motion
+vim.g["sneak#label"] = 1
+-- vim.cmd[[highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan]]
+
 -- netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0
@@ -19,7 +23,6 @@ vim.opt.hlsearch = true  -- highlight matches
 vim.opt.incsearch = true -- search as characters are entered
 vim.opt.autochdir = false
 vim.opt.linespace = 2
-vim.opt.smartcase = true
 
 -- always show sign column
 vim.opt.signcolumn = 'yes'
@@ -30,7 +33,7 @@ vim.opt.autoread = true
 -- au CursorHold * checktime
 
 -- Make all swap files be saved in a temp directory instead of working one
-vim.opt.swapfile = false
+vim.opt.directory = '$HOME/.vim/tmp/'
 
 -- Better display for messages
 vim.opt.cmdheight = 1
@@ -76,8 +79,3 @@ vim.opt.shortmess = vim.opt.shortmess + "c"
 
 -- autosave rust files on save
 vim.g.rustfmt_autosave = 1
-
--- enable sneak labels
-vim.g.syntax = 'enable'
-vim.g.conceal = 'on'
-vim.g.conceallevel = 2

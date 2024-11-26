@@ -1,5 +1,5 @@
 " Install plugins
-if empty(glob("~/.vim/autoload/plug.vim"))
+if empty(glob("C:/Users/andriib/vimfiles/autoload/plug.vim"))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   auto VimEnter * PlugInstall
@@ -36,23 +36,28 @@ Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'hrsh7th/nvim-compe'
 
-" ts utils
-" Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-" Plug 'glepnir/lspsaga.nvim'
-" Plug 'jose-elias-alvarez/null-ls.nvim'
+" dotnet/c#
+Plug 'OmniSharp/omnisharp-vim'
+
+" Debug Adapter
+Plug 'mfussenegger/nvim-dap'
+
+" Symbols
+Plug 'simrat39/symbols-outline.nvim'
+
+" auto pairs like () {} etc
+" Plug 'jiangmiao/auto-pairs'
 
 " file fizzy search
-" Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
 " error highlights
 " pretty icons
 Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'folke/trouble.nvim'
+Plug 'folke/trouble.nvim'
 Plug 'folke/lsp-colors.nvim'
-
-Plug 'jiangmiao/auto-pairs'
 
 " definitions/references
 Plug 'pechorin/any-jump.vim'
@@ -60,9 +65,6 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'nyaml', 'html'],
   \ }
-
-" visualize indent
-" Plug 'Yggdroot/indentLine'
 
 " Add some colours
 Plug 'joshdick/onedark.vim'
@@ -79,8 +81,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'tree-sitter/tree-sitter-typescript'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " statusline
 Plug 'vim-airline/vim-airline'
