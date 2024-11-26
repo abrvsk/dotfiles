@@ -19,6 +19,7 @@ vim.opt.hlsearch = true  -- highlight matches
 vim.opt.incsearch = true -- search as characters are entered
 vim.opt.autochdir = false
 vim.opt.linespace = 2
+vim.opt.ignorecase = true
 
 -- always show sign column
 vim.opt.signcolumn = 'yes'
@@ -75,3 +76,8 @@ vim.opt.shortmess = vim.opt.shortmess + "c"
 
 -- autosave rust files on save
 vim.g.rustfmt_autosave = 1
+
+-- enable sneak labels
+vim.g.syntax = 'enable'
+vim.g.conceal = 'on'
+vim.g.conceallevel = 2
